@@ -77,7 +77,8 @@ MBB_Ignore = {
 	[19] = "TimeManagerClockButton",
 	[20] = "pfMiniMapPin",
 	[21] = "Clock",
-	[22] = "Timer"
+	[22] = "Timer",
+	[23] = "TurtleCount"
 };
 
 MBB_IgnoreSize = {
