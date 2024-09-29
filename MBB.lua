@@ -87,6 +87,7 @@ MBB_IgnoreSize = {
 	[4] = "STC_SoulstoneButton",
 	[5] = "STC_SpellstoneButton",
 	[6] = "STC_FirestoneButton",
+	[7] = "TurtleCount",
 };
 
 --Code by Grayhoof (SCT)
