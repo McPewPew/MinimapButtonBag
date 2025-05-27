@@ -128,6 +128,10 @@ MBB_CallBack = {
 	end
 }
 
+
+_rescanned = false;
+_starttime = GetTime();
+
 function MBB_OnLoad()
 	this:RegisterEvent("VARIABLES_LOADED");
 	this:RegisterEvent("ADDON_LOADED");
@@ -250,6 +254,8 @@ function MBB_OnEvent()
 	end
 end
 
+local alreadyGathered = {}
+
 function MBB_GatherIcons()
 	local children = {Minimap:GetChildren()};
 	local additional = {MinimapBackdrop:GetChildren()};
@@ -281,6 +287,10 @@ function MBB_GatherIcons()
 			end
 		end
 --McPewPew
+			if alreadyGathered[child:GetName()] then
+				ignore = true;
+			end
+			alreadyGathered[child:GetName()] = true;
 			if( not ignore ) then
 				if( not child:HasScript("OnClick") ) then
 					for _,subchild in ipairs({child:GetChildren()}) do
@@ -638,6 +648,14 @@ function MBB_HideButtons()
 end
 
 function MBB_OnUpdate(elapsed)
+	
+	if (not _rescanned and (GetTime() - _starttime) > 5) then
+			_rescanned = true;
+			MBB_GatherIcons();
+			MBB_SetButtonPosition();
+			return;	
+		end;
+	
 	if( MBB_DragFlag == 1 and MBB_Options.AttachToMinimap == 1 ) then
 		local xpos,ypos = GetCursorPosition();
 		local xmin,ymin,xm,ym = Minimap:GetLeft(), Minimap:GetBottom(), Minimap:GetRight(), Minimap:GetTop();
