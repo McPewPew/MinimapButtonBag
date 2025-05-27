@@ -128,13 +128,10 @@ MBB_CallBack = {
 	end
 }
 
-
-_rescanned = false;
-_starttime = GetTime();
-
 function MBB_OnLoad()
 	this:RegisterEvent("VARIABLES_LOADED");
 	this:RegisterEvent("ADDON_LOADED");
+	this:RegisterEvent("PLAYER_LOGIN");
 	SLASH_MBB1 = "/mbb";
 	SlashCmdList["MBB"] = MBB_SlashHandler;
 end
@@ -246,6 +243,10 @@ function MBB_OnEvent()
 		if ( MBB_Options == nil or MBB_Options["Version"] ~= MBB_Version)  then
 			MBB_Options = CloneTable(MBB_DefaultOptions)
 		end
+	end
+	if(event == "PLAYER_LOGIN") then
+		MBB_GatherIcons();
+		MBB_SetButtonPosition();
 	end
 end
 
@@ -637,14 +638,6 @@ function MBB_HideButtons()
 end
 
 function MBB_OnUpdate(elapsed)
-	
-	if (not _rescanned and (GetTime() - _starttime) > 5) then
-			_rescanned = true;
-			MBB_GatherIcons();
-			MBB_SetButtonPosition();
-			return;	
-		end;
-	
 	if( MBB_DragFlag == 1 and MBB_Options.AttachToMinimap == 1 ) then
 		local xpos,ypos = GetCursorPosition();
 		local xmin,ymin,xm,ym = Minimap:GetLeft(), Minimap:GetBottom(), Minimap:GetRight(), Minimap:GetTop();
