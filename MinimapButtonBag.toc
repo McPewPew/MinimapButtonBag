@@ -1,0 +1,14 @@
+## Interface: 11200
+## Title: MinimapButtonBag
+## Version: 0.508
+## Author: Tunhadil, LaYt (+McPewPew)
+## X-Website: https://github.com/McPewPew/MinimapButtonBag
+## X-Date 2021-02-21
+## Notes: Reduces minimap buttons and makes them accessible through a menu!
+## Notes-deDE: Reduziert die Minimap Knöpfe und erlaubt den Zugriff auf diese über ein Menü!
+## Notes-ruRU: Компанует все иконки на миникарте в одну.
+## SavedVariablesPerCharacter: MBB_Exclude, MBB_Options
+localization-enGB.lua
+localization-deDE.lua
+localization-ruRU.lua
+MBB.xml
