@@ -9,4 +9,4 @@ MinimapButtonBag cleans up your Minimap and relocates the buttons in a menu bar.
 ## Instructions
 *  Download **[Latest Version](https://github.com/McPewPew/MinimapButtonBag-TurtleWoW/archive/refs/heads/master.zip)**
 *  Unzip it into WoW\Interface\AddOns
-*  Rename "MinimapButtonBag-TurtleWoW-master" to "MinimapButtonBag-TurtleWoW"
+*  Rename "MinimapButtonBag-master" to "MinimapButtonBag"
