@@ -135,6 +135,7 @@ _starttime = GetTime();
 function MBB_OnLoad()
 	this:RegisterEvent("VARIABLES_LOADED");
 	this:RegisterEvent("ADDON_LOADED");
+	this:RegisterEvent("PLAYER_LOGIN");
 	SLASH_MBB1 = "/mbb";
 	SlashCmdList["MBB"] = MBB_SlashHandler;
 end
@@ -247,7 +248,13 @@ function MBB_OnEvent()
 			MBB_Options = CloneTable(MBB_DefaultOptions)
 		end
 	end
+	if(event == "PLAYER_LOGIN") then
+		MBB_GatherIcons();
+		MBB_SetButtonPosition();
+	end
 end
+
+local alreadyGathered = {}
 
 function MBB_GatherIcons()
 	local children = {Minimap:GetChildren()};
@@ -280,6 +287,10 @@ function MBB_GatherIcons()
 			end
 		end
 --McPewPew
+			if alreadyGathered[child:GetName()] then
+				ignore = true;
+			end
+			alreadyGathered[child:GetName()] = true;
 			if( not ignore ) then
 				if( not child:HasScript("OnClick") ) then
 					for _,subchild in ipairs({child:GetChildren()}) do
